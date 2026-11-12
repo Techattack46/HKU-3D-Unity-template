@@ -153,6 +153,7 @@ Transform:
   - {fileID: 2093619204}
   - {fileID: 523138859}
   - {fileID: 1275273595}
+  - {fileID: 686630893}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &57344771
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   InputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   playerCharacterController: {fileID: 57344772}
-  playerWalkSpeed: 5
+  playerWalkSpeed: 4
   playerRotateDampening: 0.1
   turnSmoothingVelocity: 0
   jumpHeight: 5
@@ -363,9 +364,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5754084199372789682, guid: 5b5557441bb4fc84b906aa773178370b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 3776110345761440264, guid: aac192470db49964caa5dd487d476327, type: 3}
     - target: {fileID: 919132149155446097, guid: 5b5557441bb4fc84b906aa773178370b, type: 3}
       propertyPath: m_Name
       value: sword_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5b5557441bb4fc84b906aa773178370b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1394,6 +1403,70 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542871781}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &565190835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 565190836}
+  m_Layer: 0
+  m_Name: TargetPositionIdle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &565190836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565190835}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6272114, y: 0.6272114, z: 0.32650557, w: 0.32650557}
+  m_LocalPosition: {x: 0.75, y: 0.5, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 686630893}
+  m_LocalEulerAnglesHint: {x: -125, y: 0, z: 90}
+--- !u!1 &686630892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 686630893}
+  m_Layer: 0
+  m_Name: TargetPositions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &686630893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686630892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 565190836}
+  - {fileID: 1083737196}
+  m_Father: {fileID: 57344770}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725925792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,6 +2033,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007297353}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1083737195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1083737196}
+  m_Layer: 0
+  m_Name: TargetPositionEquipped
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1083737196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083737195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.53729963, z: 0, w: 0.8433915}
+  m_LocalPosition: {x: 0.4, y: 0.1, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 686630893}
+  m_LocalEulerAnglesHint: {x: 0, y: 65, z: 0}
 --- !u!1 &1229220210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,6 +2228,9 @@ MonoBehaviour:
   InputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   swingLength: 3.5
   swordMesh: {fileID: 205939975}
+  weaponState: 0
+  IdleTargetPosition: {fileID: 565190836}
+  EquippedTargetPosition: {fileID: 1083737196}
 --- !u!1 &1332271430
 GameObject:
   m_ObjectHideFlags: 0

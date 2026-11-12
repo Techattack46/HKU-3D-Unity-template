@@ -23,6 +23,18 @@ public class Sword_attack : MonoBehaviour
 
     private bool attacking = false;
 
+    public enum WeaponState
+    {
+        IDLE,
+        EQUIPPED,
+        SWINGING,
+        RECHARGE
+    }
+
+    public WeaponState weaponState;
+    public Transform IdleTargetPosition;
+    public Transform EquippedTargetPosition;
+
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
@@ -36,10 +48,49 @@ public class Sword_attack : MonoBehaviour
     private void Awake()
     {
         playerAttackAction = InputSystem.actions.FindAction("Attack");
-        swordMesh.enabled = false;
+        //swordMesh.enabled = false;
+        weaponState = WeaponState.IDLE;
     }
 
-    void LateUpdate()
+    private void Update()
+    {
+        switch (weaponState)
+        {
+            case WeaponState.IDLE:
+                WhileIdle();
+                break;
+            case WeaponState.EQUIPPED:
+                WhileEquipped();
+                break;
+            case WeaponState.SWINGING:
+                WhileSwinging();
+                break;
+            case WeaponState.RECHARGE:
+                WhileRecharging();
+                break;
+        }
+    }
+
+    void WhileIdle()
+    {
+        //Weapon is dragged behind player.
+        transform.position = IdleTargetPosition.position;
+        transform.rotation = IdleTargetPosition.rotation;
+    }
+
+    void WhileEquipped()
+    {
+        //Attack button pressed, readying attack.
+        transform.position = EquippedTargetPosition.position;
+        transform.rotation = EquippedTargetPosition.rotation;
+    }
+
+    void WhileRecharging()
+    {
+        //Cooldown so the player can't spam.
+    }
+
+    void WhileSwinging()
     {
         if (playerAttackAction.WasPressedThisFrame() && attacking == false)
         {
@@ -72,10 +123,7 @@ public class Sword_attack : MonoBehaviour
         else
         {
             attacking = false;
-            swordMesh.enabled = false;
+            //swordMesh.enabled = false;
         }
-
     }
-
-    
 }
