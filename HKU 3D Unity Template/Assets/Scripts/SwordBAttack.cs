@@ -31,6 +31,8 @@ public class Sword_attack : MonoBehaviour
         RECHARGE
     }
 
+    public GameObject player;
+    
     public WeaponState weaponState;
     public Transform IdleTargetPosition;
     public Transform EquippedTargetPosition;
@@ -47,6 +49,8 @@ public class Sword_attack : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.Find("Player");
+
         playerAttackAction = InputSystem.actions.FindAction("Attack");
         //swordMesh.enabled = false;
         weaponState = WeaponState.IDLE;
@@ -71,11 +75,15 @@ public class Sword_attack : MonoBehaviour
         }
     }
 
-    void WhileIdle()
+    private void WhileIdle()
     {
         //Weapon is dragged behind player.
         transform.position = IdleTargetPosition.position;
         transform.rotation = IdleTargetPosition.rotation;
+
+        player.GetComponent<PlayerMovement>().playerSpeed = player.GetComponent<PlayerMovement>().idleWalkSpeed;
+
+        //Play sound of heavy stone dragging while walking.
 
         if (playerAttackAction.WasPressedThisFrame())
         {
@@ -83,19 +91,16 @@ public class Sword_attack : MonoBehaviour
         }
     }
 
-    void WhileEquipped()
+    private void WhileEquipped()
     {
         //Attack button pressed, readying attack.
         transform.position = EquippedTargetPosition.position;
         transform.rotation = EquippedTargetPosition.rotation;
+
+        player.GetComponent<PlayerMovement>().playerSpeed = player.GetComponent<PlayerMovement>().equippedWalkSpeed;
     }
 
-    void WhileRecharging()
-    {
-        //Cooldown so the player can't spam.
-    }
-
-    void WhileSwinging()
+    private void WhileSwinging()
     {
         if (playerAttackAction.WasPressedThisFrame() && attacking == false)
         {
@@ -130,5 +135,10 @@ public class Sword_attack : MonoBehaviour
             attacking = false;
             //swordMesh.enabled = false;
         }
+    }
+
+    private void WhileRecharging()
+    {
+        //Cooldown so the player can't spam.
     }
 }

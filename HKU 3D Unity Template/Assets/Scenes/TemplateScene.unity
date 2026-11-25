@@ -170,7 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   InputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   playerCharacterController: {fileID: 57344772}
-  playerWalkSpeed: 4
+  playerSpeed: 5
+  idleWalkSpeed: 4
+  equippedWalkSpeed: 5.5
   playerRotateDampening: 0.1
   turnSmoothingVelocity: 0
   jumpHeight: 5
@@ -2228,6 +2230,7 @@ MonoBehaviour:
   InputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   swingLength: 3.5
   swordMesh: {fileID: 205939975}
+  player: {fileID: 0}
   weaponState: 0
   IdleTargetPosition: {fileID: 565190836}
   EquippedTargetPosition: {fileID: 1083737196}

@@ -14,8 +14,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 playerMoveAmount;
 
-    [SerializeField]
-    private float playerWalkSpeed = 5.0f;
+    [HideInInspector]
+    public float playerSpeed;
+    public float idleWalkSpeed;
+    public float equippedWalkSpeed;
     [SerializeField]
     private float playerRotateDampening = 0.1f;
     [SerializeField]
@@ -32,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
-
     }
 
     private void OnDisable()
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(0f, smoothTargetAngle, 0f);
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            playerCharacterController.Move(moveDirection.normalized * playerWalkSpeed * Time.deltaTime + verticalMove);
+            playerCharacterController.Move(moveDirection.normalized * playerSpeed * Time.deltaTime + verticalMove);
         }
         else
         {
