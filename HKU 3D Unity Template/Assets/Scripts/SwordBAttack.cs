@@ -76,6 +76,11 @@ public class Sword_attack : MonoBehaviour
         //Weapon is dragged behind player.
         transform.position = IdleTargetPosition.position;
         transform.rotation = IdleTargetPosition.rotation;
+
+        if (playerAttackAction.WasPressedThisFrame())
+        {
+            weaponState = WeaponState.EQUIPPED;
+        }
     }
 
     void WhileEquipped()
