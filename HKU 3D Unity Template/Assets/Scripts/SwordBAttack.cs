@@ -37,6 +37,8 @@ public class Sword_attack : MonoBehaviour
     public Transform IdleTargetPosition;
     public Transform EquippedTargetPosition;
 
+    public AudioClip weaponDragClip;
+
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
@@ -84,6 +86,11 @@ public class Sword_attack : MonoBehaviour
         player.GetComponent<PlayerMovement>().playerSpeed = player.GetComponent<PlayerMovement>().idleWalkSpeed;
 
         //Play sound of heavy stone dragging while walking.
+        if (player.GetComponent<PlayerMovement>().isWalking)
+        {
+            //AudioManager.Instance.PlayClip(weaponDragClip);
+            Debug.Log("Heavy Drag");
+        }
 
         if (playerAttackAction.WasPressedThisFrame())
         {

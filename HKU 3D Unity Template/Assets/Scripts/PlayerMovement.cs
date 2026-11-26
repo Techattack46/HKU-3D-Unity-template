@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform playerCamera;
 
+    public bool isWalking = false;
+
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
@@ -54,19 +56,23 @@ public class PlayerMovement : MonoBehaviour
         PlayerMoveAndRotate();
     }
 
-    private void PlayerMoveAndRotate()
+    public void PlayerMoveAndRotate()
     { 
         Vector3 playerDirection = new Vector3(playerMoveAmount.x,0f, playerMoveAmount.y).normalized;
         Vector3 verticalMove = new Vector3(0f, verticalVelocity, 0f) * Time.deltaTime;
 
         if (playerDirection.magnitude >= 0.1f)
         {
+            isWalking = true;
+            
             float targetAngle = Mathf.Atan2(playerDirection.x, playerDirection.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
             float smoothTargetAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothingVelocity, playerRotateDampening);
 
             transform.rotation = Quaternion.Euler(0f, smoothTargetAngle, 0f);
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             playerCharacterController.Move(moveDirection.normalized * playerSpeed * Time.deltaTime + verticalMove);
+
+            isWalking = false;
         }
         else
         {
